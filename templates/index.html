@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALLIQ AI — Intelligent Call Analytics</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        CALL<span>IQ</span> AI
+        <small>INTELLIGENT CALL ANALYTICS</small>
+    </div>
+
+    <div class="workspace">
+        <small>КОМПАНИЯ</small>
+        <strong>Центр Красок</strong>
+    </div>
+
+    <nav>
+        <a href="#dashboard" class="active">Басқару панелі</a>
+        <a href="#upload">Жаңа талдау</a>
+        <a href="#history">Қоңыраулар тарихы</a>
+        <a href="#result">AI карточкасы</a>
+        <a href="#tasks">Міндеттемелерді бақылау</a>
+        <a href="#privacy">Құпиялылық</a>
+    </nav>
+
+    <div class="local-status">
+        <span class="dot"></span>
+        Local AI System
+        <small>Локалды өңдеу</small>
+    </div>
+
+</aside>
+
+<main>
+
+    <header>
+        <div>
+            <small>CALLIQ / WORKSPACE</small>
+            <h1>Басқару панелі</h1>
+            <p>Әр қоңырау — жаңа бизнес мүмкіндігі.</p>
+        </div>
+
+        <div class="system-status">
+            ● LOCAL AI
+        </div>
+    </header>
+
+    <section id="dashboard" class="stats">
+
+        <article class="stat">
+            <span>Барлық қоңыраулар</span>
+            <strong id="totalCalls">0</strong>
+            <small>Қоңыраулар тарихы</small>
+        </article>
+
+        <article class="stat">
+            <span>Міндеттемелер</span>
+            <strong id="agreements">0</strong>
+            <small>Менеджер уәделері</small>
+        </article>
+
+        <article class="stat">
+            <span>Жауап күтілуде</span>
+            <strong id="waiting">0</strong>
+            <small>Бақылауды қажет етеді</small>
+        </article>
+
+        <article class="stat">
+            <span>Клиент шағымдары</span>
+            <strong id="complaints">0</strong>
+            <small>Назар аудару қажет</small>
+        </article>
+
+    </section>
+
+    <section id="upload" class="panel">
+
+        <div class="section-heading">
+            <div>
+                <small>01 / AUDIO ANALYSIS</small>
+                <h2>Жаңа қоңырауды талдау</h2>
+            </div>
+
+            <span class="tag">KAZAKH ASR</span>
+        </div>
+
+        <!-- ЖАҢА АУДИО ЖАЗУ МОДУЛІ -->
+
+        <div class="live-recording">
+
+            <div class="section-heading">
+                <div>
+                    <small>LIVE AUDIO CAPTURE</small>
+                    <h3>Қоңырау аудиосын жазу</h3>
+                </div>
+
+                <span class="tag">LIVE</span>
+            </div>
+
+            <p>
+                Телефондағы WhatsApp қоңырауын
+                спикерфон режиміне ауыстырыңыз.
+                Жазу алдында қатысушылардың
+                келісімін алыңыз.
+            </p>
+
+            <label class="consent">
+
+                <input type="checkbox"
+                       id="recordConsent">
+
+                Барлық қатысушы аудионы жазуға
+                және AI арқылы талдауға келісім берді.
+
+            </label>
+
+            <div class="recording-display">
+
+                <span id="recordingIndicator">
+                    Жазба басталған жоқ
+                </span>
+
+                <h2 id="recordTimer">00:00</h2>
+
+                <progress id="audioLevel"
+                          value="0"
+                          max="100"
+                          aria-label="Дыбыс деңгейі">
+                </progress>
+
+                <p id="recordStatus" role="status">
+                    Микрофон дайындық режимінде
+                </p>
+
+            </div>
+
+            <div class="recording-actions">
+
+                <button type="button"
+                        id="startRecord"
+                        disabled>
+                    ● Жазуды бастау
+                </button>
+
+                <button type="button"
+                        id="stopRecord"
+                        disabled>
+                    ■ Жазуды тоқтату
+                </button>
+
+            </div>
+
+            <div id="recordPreview" hidden>
+
+                <h3>Жазылған аудио</h3>
+
+                <p>
+                    Аудионы тыңдап, тексеріңіз.
+                </p>
+
+                <audio id="recordedAudio"
+                       controls>
+                </audio>
+
+                <div class="recording-actions">
+
+                    <button type="button"
+                            id="analyzeRecord"
+                            disabled>
+                        AI талдауға жіберу →
+                    </button>
+
+                    <button type="button"
+                            id="deleteRecord">
+                        Жазбаны жою
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <details class="optional-upload">
+
+    <summary>
+
+        <div class="optional-upload-title">
+
+            <strong>Дайын аудиофайлды жүктеу</strong>
+
+            <small>Қосымша талдау әдісі</small>
+
+        </div>
+
+        <span class="upload-arrow">⌄</span>
+
+    </summary>
+
+    <div class="optional-upload-content">
+
+        <label class="dropzone" for="audioInput">
+
+            <div class="upload-icon">↑</div>
+
+            <strong>Аудиофайлды таңдаңыз</strong>
+
+            <p>MP3, M4A, WAV, OGG, WEBM</p>
+
+            <small>Максималды көлемі: 25 МБ</small>
+
+            <input type="file"
+                   id="audioInput"
+                   accept=".mp3,.m4a,.wav,.ogg,.webm"
+                   hidden>
+
+            <div id="fileName"></div>
+
+        </label>
+
+        <label class="consent">
+
+            <input type="checkbox" id="consent">
+
+            Қоңырауға қатысушылар аудионы жазуға
+            және талдауға келісім берді.
+
+        </label>
+
+        <button type="button" id="analyzeBtn">
+            AI талдауды бастау →
+        </button>
+
+    </div>
+
+</details>
+        <!-- AI ТАЛДАУ КЕЗІНДЕГІ ЖҮКТЕЛУ БЕЛГІСІ -->
+
+        <div id="loading" hidden>
+
+            <div class="loader"></div>
+
+            <strong>AI аудионы өңдеуде...</strong>
+
+            <p>
+                Сөйлеушілерді анықтау,
+                транскрипция және талдау жүргізілуде.
+            </p>
+
+            <small>
+                Өңдеу уақыты аудио ұзақтығына
+                байланысты.
+            </small>
+
+        </div>
+
+        <p id="message" role="status"></p>
+        <p id="message" role="status"></p>
+
+    </section>
+
+    <section id="result" class="panel">
+
+        <div class="section-heading">
+
+            <div>
+                <small>02 / SMART CALL CARD</small>
+                <h2>Қоңырау нәтижесі</h2>
+            </div>
+
+            <span class="tag">AI ANALYSIS</span>
+
+        </div>
+
+        <div id="resultContent" class="empty">
+            Талдау нәтижесі осы жерде көрсетіледі.
+        </div>
+
+    </section>
+
+    <section id="history" class="panel">
+
+        <div class="section-heading">
+
+            <div>
+                <small>03 / CALL HISTORY</small>
+                <h2>Қоңыраулар тарихы</h2>
+            </div>
+
+        </div>
+
+        <div id="historyContent"></div>
+
+    </section>
+    
+<section id="tasks" class="panel">
+
+    <div class="section-heading">
+        <div>
+            <small>04 / TASK TRACKER</small>
+            <h2>Міндеттемелерді бақылау</h2>
+        </div>
+
+        <span class="tag">SMART CONTROL</span>
+    </div>
+
+    <p class="task-description">
+        AI анықтаған менеджер міндеттемелерін
+        растау және орындалуын бақылау.
+    </p>
+
+    <div class="task-stats">
+
+        <article>
+            <small>Растау қажет</small>
+            <strong id="taskReview">0</strong>
+        </article>
+
+        <article>
+            <small>Орындалуда</small>
+            <strong id="taskPending">0</strong>
+        </article>
+
+        <article>
+            <small>Мерзімі өтті</small>
+            <strong id="taskOverdue">0</strong>
+        </article>
+
+        <article>
+            <small>Орындалды</small>
+            <strong id="taskCompleted">0</strong>
+        </article>
+
+    </div>
+
+    <div id="tasksContent">
+        Тапсырмалар жүктелуде...
+    </div>
+
+</section>
+
+    <section id="privacy" class="panel">
+
+        <small>04 / DATA PROTECTION</small>
+
+        <h2>Құпиялылық және қауіпсіздік</h2>
+
+        <div class="privacy-grid">
+
+            <article>
+                <strong>Локалды AI</strong>
+                <p>
+                    Аудио осы компьютерде өңделеді.
+                </p>
+            </article>
+
+            <article>
+                <strong>Қатысушылар келісімі</strong>
+                <p>
+                    Жазу және талдау алдында
+                    келісім расталады.
+                </p>
+            </article>
+
+            <article>
+                <strong>Деректерді басқару</strong>
+                <p>
+                    Аудио мен карточканы жою
+                    мүмкіндігі.
+                </p>
+            </article>
+
+            <article>
+                <strong>WhatsApp мобильді қосымшасы</strong>
+                <p>
+                    Мобильді қосымша өзгеріссіз сақталады.
+                    Аудио ноутбук микрофоны арқылы жазылады.
+                </p>
+            </article>
+
+            <article>
+                <strong>Жазбаны басқару</strong>
+                <p>
+                    Пайдаланушы жазуды өзі бастайды
+                    және тоқтатады.
+                </p>
+            </article>
+
+            <article>
+                <strong>AI нәтижесін тексеру</strong>
+                <p>
+                    Талдау нәтижесін жауапты
+                    қызметкер тексеруі қажет.
+                </p>
+            </article>
+
+        </div>
+
+    </section>
+
+    <footer>
+        CALLIQ AI © 2026 · Hackathon Prototype
+    </footer>
+
+</main>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
